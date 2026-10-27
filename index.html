@@ -5,91 +5,335 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- كود التحقق الخاص بـ Monetag -->
     <meta name="monetag" content="fd32c4043058c1253eafb8f09c22be37">
-    
-    <title>تطبيق الرياضة والتوقع - الصفحة الرسمية</title>
+
+    <title>ZELO Sport - الصفحة الرسمية</title>
+    <meta name="description" content="ZELO Sport: تطبيق مجتمع الرياضة والتوقعات والأندية. الشروط وسياسة الخصوصية والاشتراكات.">
     <style>
+        :root {
+            --bg-dark: #0a1033;
+            --bg-card: #111a4a;
+            --bg-soft: rgba(17, 26, 74, 0.6);
+            --accent-purple: #2c4bb5;
+            --accent-red: #14206b;
+            --accent-gold: #f5c35a;
+            --text-main: #f8fafc;
+            --text-muted: #9aa6d6;
+            --glass-border: rgba(245, 195, 90, 0.18);
+        }
+
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+            background: var(--bg-dark);
+            color: var(--text-main);
             margin: 0;
-            padding: 0;
-            text-align: center;
+            line-height: 1.8;
         }
+
+        a { color: var(--accent-gold); }
+
+        /* ===== الهيدر ===== */
         header {
-            background-color: #1f1f1f;
-            padding: 40px 20px;
-            border-bottom: 2px solid #333;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-red), var(--bg-dark));
+            padding: 48px 20px 36px;
+            text-align: center;
+            border-bottom: 2px solid var(--glass-border);
         }
-        h1 {
-            color: #00e676;
-            margin-bottom: 10px;
+        .logo {
+            width: 72px; height: 72px; margin: 0 auto 14px;
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; font-weight: 900; color: var(--bg-dark);
+            background: linear-gradient(135deg, var(--accent-gold), #fde9a8);
+            box-shadow: 0 0 24px rgba(245, 195, 90, 0.35);
         }
-        p {
-            color: #ccc;
-            font-size: 1.1em;
-            max-width: 600px;
-            margin: 10px auto;
-            line-height: 1.6;
+        h1 { color: var(--accent-gold); margin: 0 0 8px; font-size: 1.9rem; }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 620px; margin: 8px auto; }
+
+        /* ===== القائمة السريعة ===== */
+        nav.toc {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            padding: 18px 16px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky; top: 0; z-index: 10;
         }
-        .container {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: auto;
+        nav.toc a {
+            text-decoration: none; font-weight: 700; font-size: .9rem;
+            padding: 6px 14px; border-radius: 20px;
+            border: 1px solid var(--glass-border); color: var(--text-main);
         }
+        nav.toc a:hover { background: var(--accent-purple); }
+
+        .container { padding: 20px; max-width: 860px; margin: auto; }
+
+        section {
+            margin: 28px 0;
+            padding: 26px 22px;
+            background: var(--bg-soft);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+        h2 { color: var(--accent-gold); margin-top: 0; font-size: 1.4rem; }
+        h3 { color: var(--text-main); font-size: 1.05rem; margin: 18px 0 6px; }
+        p, li { color: #d6dcf5; font-size: 1rem; }
+        ul { padding-right: 20px; }
+        li { margin: 6px 0; }
+        .muted { color: var(--text-muted); font-size: .9rem; }
+
+        /* ===== البطاقات ===== */
         .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
         }
         .card {
-            background-color: #1e1e1e;
-            padding: 20px;
+            background: var(--bg-card);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+        }
+        .card .icon { font-size: 1.6rem; }
+        .card h3 { color: var(--accent-gold); margin-top: 6px; }
+        .card p { margin: 4px 0 0; font-size: .92rem; color: var(--text-muted); }
+
+        /* ===== الأسعار ===== */
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+        .plan {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+        }
+        .plan.best { border: 1.5px solid var(--accent-gold); }
+        .price { color: var(--accent-gold); font-size: 1.7rem; font-weight: 900; }
+
+        .btn {
+            display: inline-block; margin-top: 12px;
+            padding: 12px 26px; border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
+            color: #fff; font-weight: 900; text-decoration: none;
+        }
+
+        .notice {
+            border-right: 4px solid var(--accent-gold);
+            background: rgba(245, 195, 90, 0.08);
+            padding: 12px 16px;
             border-radius: 10px;
-            width: 220px;
-            border: 1px solid #333;
+            margin: 14px 0;
+            color: var(--text-main);
         }
-        .card h3 {
-            color: #00e676;
-        }
+
+        /* ===== التذييل ===== */
         footer {
-            background-color: #1f1f1f;
-            padding: 20px;
-            margin-top: 50px;
-            color: #777;
-            font-size: 0.9em;
+            background: var(--bg-card);
+            padding: 22px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: .9em;
+            text-align: center;
         }
+        footer a { margin: 0 8px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>مباشر والعمليات الرقمية الرياضية</h1>
-        <p>تطبيقك التفاعلي لمتابعة التحليلات والتوقعات الرياضية والتخصيص المباشر بأعلى جودة.</p>
+        <div class="logo">Z</div>
+        <h1>ZELO Sport</h1>
+        <p>تطبيق مجتمع الرياضة: توقعات المباريات، الأندية، الغرف، والتحليلات المباشرة.</p>
+        <a class="btn" href="#contact">تواصل معنا</a>
     </header>
 
+    <nav class="toc">
+        <a href="#features">المميزات</a>
+        <a href="#premium">الاشتراك المدفوع</a>
+        <a href="#privacy">سياسة الخصوصية</a>
+        <a href="#terms">شروط الاستخدام</a>
+        <a href="#refunds">الدفع والاسترداد</a>
+        <a href="#contact">التواصل</a>
+    </nav>
+
     <div class="container">
-        <h2>مميزات التطبيق</h2>
-        <div class="features">
-            <div class="card">
-                <h3>توقعات حية</h3>
-                <p>متابعة وتوقعات دقيقة للمباريات الرياضية أولاً بأول.</p>
+
+        <!-- ===== المميزات ===== -->
+        <section id="features">
+            <h2>مميزات التطبيق</h2>
+            <div class="features">
+                <div class="card">
+                    <div class="icon">⚽</div>
+                    <h3>توقعات المباريات</h3>
+                    <p>توقّع نتائج المباريات ونافس اللاعبين الآخرين على لوحات الترتيب.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🏟️</div>
+                    <h3>الأندية والغرف</h3>
+                    <p>اختر ناديك المفضل، وتابع النقاش داخل غرف الدردشة مع مشجعي فريقك.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🏅</div>
+                    <h3>شعار ناديك</h3>
+                    <p>اعرض شعار ناديك بجانب اسمك وخصّص ملفك الشخصي بالاشتراك.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🎁</div>
+                    <h3>نقاط ZELO</h3>
+                    <p>اكسب نقاط ZELO من التوقعات الصحيحة والدعوات وإكمال المهام، ويمكن سحبها وفق الشروط.</p>
+                </div>
             </div>
-            <div class="card">
-                <h3>تخصيص شعارات</h3>
-                <p>إمكانية ترقية حسابك وتخصيص واجهة التطبيق بشعاراتك المفضلة.</p>
-            </div>
-            <div class="card">
-                <h3>دعم متكامل</h3>
-                <p>دفع آمن وسريع للحصول على الميزات الإضافية أوتوماتيكياً.</p>
-            </div>
-        </div>
+        </section>
+
+        <!-- ===== الاشتراك المدفوع ===== -->
+        <section id="premium">
+            <h2>الاشتراك المدفوع (ZELO Premium)</h2>
+            <p>الاشتراك يفتح مزايا إضافية، وهي: شعار ناديك بجانب اسمك، ومنشورات أطول، والرسائل الصوتية داخل الغرف، ومساعد المباراة بالذكاء الاصطناعي، وفيديو حتى 45 ثانية.</p>
+            <p class="muted">تفاصيل الأسعار وخيارات المدة تظهر داخل التطبيق عند الاشتراك.</p>
+        </section>
+
+        <!-- ===== سياسة الخصوصية ===== -->
+        <section id="privacy">
+            <h2>سياسة الخصوصية</h2>
+            <p class="muted">آخر تحديث: [ضع التاريخ هنا]</p>
+
+            <h3>1. البيانات التي نجمعها</h3>
+            <ul>
+                <li><strong>بيانات الحساب:</strong> البريد الإلكتروني، اسم المستخدم، الاسم المستعار، تاريخ الميلاد، اللغة، والصورة الشخصية إن أضفتها.</li>
+                <li><strong>بيانات النشاط:</strong> المنشورات والتعليقات والرسائل داخل الغرف والرسائل الخاصة، والتوقعات، ونقاط ZELO، وسجل المهام.</li>
+                <li><strong>بيانات الدفع:</strong> نعالج عمليات الاشتراك فقط، ولا نحفظ بيانات بطاقات. الدفع يتم بعملة USDT عبر شبكة Solana، وقد يظهر عنوان المحفظة المرتبطة بالعملية.</li>
+                <li><strong>بيانات السحب:</strong> عند طلب سحب النقاط نجمع البيانات اللازمة لإتمامه، مثل عنوان المحفظة الذي تستلم عليه المبلغ، و[أضف أي بيانات أخرى تطلبها للتحقق، مثل الهوية أو الاسم الكامل].
+            </ul>
+
+            <h3>2. كيف نستخدم البيانات</h3>
+            <ul>
+                <li>تشغيل الحساب وتسجيل الدخول وحمايته.</li>
+                <li>عرض المحتوى والتوقعات وترتيب اللاعبين.</li>
+                <li>تفعيل الاشتراكات والمزايا المدفوعة والتحقق من الدفعات.</li>
+                <li>منع الاحتيال وإساءة الاستخدام.</li>
+                <li>الرد على طلبات الدعم.</li>
+            </ul>
+
+            <h3>3. الجهات الخارجية التي تعالج البيانات</h3>
+            <ul>
+                <li><strong>Supabase:</strong> استضافة قاعدة البيانات والمصادقة وتخزين البيانات.</li>
+                <li><strong>Google:</strong> عند اختيار تسجيل الدخول بحساب Google.</li>
+                <li><strong>شبكة Solana:</strong> لتأكيد عمليات الدفع بعملة USDT، وهي شبكة عامة ومعاملاتها مرئية للجميع.</li>
+            </ul>
+            <p>لا نبيع بياناتك الشخصية لأي طرف.</p>
+
+            <h3>4. مدة الاحتفاظ</h3>
+            <p>نحتفظ بالبيانات طالما بقي حسابك نشطاً، ثم نحذفها عند حذف الحساب من داخل التطبيق، باستثناء ما يلزم قانونياً للاحتفاظ به (مثل سجلات الدفع).</p>
+
+            <h3>5. حقوقك</h3>
+            <p>يحق لك طلب الاطلاع على بياناتك أو تصحيحها، ويمكنك حذف حسابك من داخل التطبيق.</p>
+
+            <h3>6. الأطفال</h3>
+            <p>التطبيق مخصص لمن عمرهم 13 سنة فأكثر. لا نجمع عن قصد بيانات من هم دون هذا السن. إذا علمت بوجود حساب لطفل دون السن المحدد، تواصل معنا لحذفه.</p>
+
+            <h3>7. التغييرات</h3>
+            <p>قد نحدّث هذه السياسة، وسنعلن عن التغييرات الجوهرية داخل التطبيق أو هنا.</p>
+        </section>
+
+        <!-- ===== شروط الاستخدام ===== -->
+        <section id="terms">
+            <h2>شروط الاستخدام</h2>
+            <p class="muted">آخر تحديث: [ضع التاريخ هنا]</p>
+
+            <h3>1. الحساب</h3>
+            <ul>
+                <li>يجب أن يكون عمرك 13 سنة على الأقل.</li>
+                <li>أنت مسؤول عن سرية كلمة المرور وعن كل ما يحدث عبر حسابك.</li>
+                <li>حساب واحد لكل شخص، ويُمنع انتحال هوية شخص آخر أو فريق آخر.</li>
+            </ul>
+
+            <h3>2. قواعد السلوك</h3>
+            <ul>
+                <li>يُمنع التحرش والشتم والتمييز والتهديد وخطاب الكراهية.</li>
+                <li>يُمنع نشر محتوى مخل أو عنيف أو محتوى ينتهك حقوق الآخرين.</li>
+                <li>يُمنع الإزعاج والرسائل الدعائية غير المرغوبة والتلاعب بالنقاط أو الترتيب.</li>
+                <li>يُمنع إنشاء حسابات وهمية أو دعوات وهمية أو متابعات مؤقتة لاكتساب النقاط، ويحق لنا سحب النقاط المكتسبة بهذه الطريقة وإيقاف الحساب.</li>
+                <li>يحق لنا إيقاف الحسابات أو حذف المحتوى المخالف دون إشعار مسبق عند الضرورة.</li>
+            </ul>
+
+            <h3>3. المحتوى</h3>
+            <p>تحتفظ بملكية ما تنشره، وتمنحنا ترخيصاً محدوداً لعرضه داخل التطبيق لتشغيل الخدمة. أنت مسؤول عن المحتوى الذي تنشره.</p>
+
+            <h3>4. التوقعات ونقاط ZELO</h3>
+            <ul>
+                <li>المشاركة في التوقعات <strong>مجانية</strong>، ولا يُطلب منك أي مبلغ للدخول فيها.</li>
+                <li>تُمنح النقاط وفق القواعد المعلنة داخل التطبيق، وقد تتغير هذه القواعد مع إشعار مسبق.</li>
+                <li>لا نضمن دقة أي توقع أو نتيجة، والتوقعات لا تُعد نصيحة مالية أو استثمارية.</li>
+            </ul>
+
+            <h3>5. نقاط ZELO والسحب</h3>
+            <p>تُكتسب نقاط ZELO من المصادر التالية:</p>
+            <ul>
+                <li><strong>التوقعات الصحيحة:</strong> مثل توقع نتيجة مباراة بشكل صحيح، بما في ذلك توقع التعادل. [ضع عدد النقاط لكل نوع توقع].</li>
+                <li><strong>الدعوات:</strong> عند تسجيل شخص جديد عبر رابط دعوتك واستيفائه للشروط. [اشرح شروط احتساب الدعوة وما المقصود بالشخص المؤهل].</li>
+                <li><strong>إكمال المهام:</strong> مثل متابعة حسابات محددة أو إكمال مهام أخرى. [ضع قائمة المهام وعدد النقاط لكل مهمة].</li>
+            </ul>
+            <p>يمكن تحويل نقاط ZELO إلى سحب حقيقي وفق الشروط التالية. [اشرح هنا كيف تُحسب النقاط من التوقعات وكيف تُوزَّع الجوائز، بشكل واضح للمستخدم.]</p>
+            <ul>
+                <li><strong>الحد الأدنى للسحب:</strong> [ضع المبلغ أو عدد النقاط].</li>
+                <li><strong>العملة وطريقة الاستلام:</strong> [ضع العملة والشبكة وطريقة الاستلام].</li>
+                <li><strong>الرسوم:</strong> [ضع الرسوم إن وُجدت].</li>
+                <li><strong>مدة المعالجة:</strong> [ضع المدة المتوقعة للتحويل].</li>
+                <li><strong>التحقق من الحساب:</strong> [اشرح إن كان السحب يتطلب التحقق من الهوية أو العمر أو المحفظة].</li>
+                <li><strong>الإلغاء والرفض:</strong> نحتفظ بحق تأجيل أو رفض طلب السحب عند الاشتباه في احتيال أو مخالفة لهذه الشروط، مع إبلاغك بالسبب.</li>
+            </ul>
+            <p class="muted">النقاط المكتسبة من التوقعات والمهام قد تخضع لمراجعة إضافية قبل السحب.</p>
+
+            <h3>6. الخدمة وتوفرها</h3>
+            <p>نسعى لتوفير التطبيق بشكل مستمر، لكننا لا نضمن عدم انقطاعه، وقد نعدّل المزايا أو نوقفها مع إشعار مناسب.</p>
+
+            <h3>7. إنهاء الاستخدام</h3>
+            <p>يمكنك حذف حسابك من داخل التطبيق في أي وقت. ويحق لنا إنهاء حسابك عند مخالفة هذه الشروط.</p>
+
+            <h3>8. إخلاء المسؤولية وحدودها</h3>
+            <p>يُقدَّم التطبيق "كما هو". لا نتحمل مسؤولية الأضرار غير المباشرة الناتجة عن استخدامه، إلى الحد الذي يسمح به القانون.</p>
+
+            <h3>9. القانون المطبّق</h3>
+            <p>[ضع هنا الدولة أو الجهة التي تحكم هذه الشروط.]</p>
+        </section>
+
+        <!-- ===== الاشتراكات والدفع والاسترداد ===== -->
+        <section id="refunds">
+            <h2>الدفع والاشتراكات والاسترداد</h2>
+            <ul>
+                <li><strong>طريقة الدفع:</strong> عملة USDT على شبكة Solana فقط.</li>
+                <li><strong>مدة الاشتراك:</strong> يفعّل الاشتراك للمدة المختارة (شهر أو سنة). لا يتجدد تلقائياً، ويمكنك الاشتراك مجدداً قبل انتهائه.</li>
+                <li><strong>تفعيل المزايا:</strong> يُفعَّل الاشتراك تلقائياً بعد تأكيد الدفعة على الشبكة.</li>
+                <li><strong>الاسترداد:</strong> [ضع سياسة الاسترداد هنا، مثلاً: الاسترداد خلال X أيام إذا لم تُستخدم المزايا، أو عدم الاسترداد.]</li>
+                <li><strong>السحب:</strong> شروط السحب مذكورة في قسم شروط الاستخدام (البند 5)، ولا تُعد عمليات السحب مشمولة بسياسة الاسترداد أعلاه.</li>
+                <li><strong>الدفعة الخاطئة:</strong> العمليات على شبكة Solana لا يمكن إلغاؤها. تأكد من الشبكة والعنوان والمبلغ قبل الإرسال.</li>
+            </ul>
+        </section>
+
+        <!-- ===== التواصل ===== -->
+        <section id="contact">
+            <h2>تواصل معنا</h2>
+            <ul>
+                <li>البريد الإلكتروني للدعم: <strong>[ضع البريد هنا]</strong></li>
+                <li>اسم الجهة المشغّلة: <strong>[ضع الاسم هنا]</strong></li>
+                <li>العنوان: <strong>[ضع العنوان هنا، إن لزم]</strong></li>
+            </ul>
+        </section>
+
     </div>
 
     <footer>
-        &copy; 2026 جميع الحقوق محفوظة - التطبيق الرياضي المباشر
+        &copy; 2026 ZELO Sport - جميع الحقوق محفوظة
+        <br>
+        <a href="#privacy">سياسة الخصوصية</a> |
+        <a href="#terms">شروط الاستخدام</a>
     </footer>
 
 </body>
