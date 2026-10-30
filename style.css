@@ -1,0 +1,137 @@
+
+        :root {
+            --bg-dark: #0a1033;
+            --bg-card: #111a4a;
+            --bg-soft: rgba(17, 26, 74, 0.6);
+            --accent-purple: #2c4bb5;
+            --accent-red: #14206b;
+            --accent-gold: #f5c35a;
+            --text-main: #f8fafc;
+            --text-muted: #9aa6d6;
+            --glass-border: rgba(245, 195, 90, 0.18);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        a { color: var(--accent-gold); }
+
+        /* ===== الهيدر ===== */
+        header {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-red), var(--bg-dark));
+            padding: 48px 20px 36px;
+            text-align: center;
+            border-bottom: 2px solid var(--glass-border);
+        }
+        .logo {
+            width: 72px; height: 72px; margin: 0 auto 14px;
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; font-weight: 900; color: var(--bg-dark);
+            background: linear-gradient(135deg, var(--accent-gold), #fde9a8);
+            box-shadow: 0 0 24px rgba(245, 195, 90, 0.35);
+        }
+        h1 { color: var(--accent-gold); margin: 0 0 8px; font-size: 1.9rem; }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 620px; margin: 8px auto; }
+
+        /* ===== القائمة السريعة ===== */
+        nav.toc {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            padding: 18px 16px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky; top: 0; z-index: 10;
+        }
+        nav.toc a {
+            text-decoration: none; font-weight: 700; font-size: .9rem;
+            padding: 6px 14px; border-radius: 20px;
+            border: 1px solid var(--glass-border); color: var(--text-main);
+        }
+        nav.toc a:hover { background: var(--accent-purple); }
+
+        .container { padding: 20px; max-width: 860px; margin: auto; }
+
+        section {
+            margin: 28px 0;
+            padding: 26px 22px;
+            background: var(--bg-soft);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+        h2 { color: var(--accent-gold); margin-top: 0; font-size: 1.4rem; }
+        h3 { color: var(--text-main); font-size: 1.05rem; margin: 18px 0 6px; }
+        p, li { color: #d6dcf5; font-size: 1rem; }
+        ul { padding-right: 20px; }
+        li { margin: 6px 0; }
+        .muted { color: var(--text-muted); font-size: .9rem; }
+
+        /* ===== البطاقات ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .card {
+            background: var(--bg-card);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+        }
+        .card .icon { font-size: 1.6rem; }
+        .card h3 { color: var(--accent-gold); margin-top: 6px; }
+        .card p { margin: 4px 0 0; font-size: .92rem; color: var(--text-muted); }
+
+        /* ===== الأسعار ===== */
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+        .plan {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+        }
+        .plan.best { border: 1.5px solid var(--accent-gold); }
+        .price { color: var(--accent-gold); font-size: 1.7rem; font-weight: 900; }
+
+        .btn {
+            display: inline-block; margin-top: 12px;
+            padding: 12px 26px; border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
+            color: #fff; font-weight: 900; text-decoration: none;
+        }
+
+        .notice {
+            border-right: 4px solid var(--accent-gold);
+            background: rgba(245, 195, 90, 0.08);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin: 14px 0;
+            color: var(--text-main);
+        }
+
+        /* ===== التذييل ===== */
+        footer {
+            background: var(--bg-card);
+            padding: 22px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: .9em;
+            text-align: center;
+        }
+        footer a { margin: 0 8px; }
+    
+.back{display:inline-block;margin:18px 20px 0;font-weight:700;text-decoration:none}
