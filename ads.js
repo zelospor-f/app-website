@@ -24,7 +24,6 @@
     const IS_TESTING = AD_MODE !== 'real';
 
     const COOLDOWN_MS = 30 * 1000;
-    const REWARD_POINTS = 50;
     const AD_SLOT_H = 80;       // 8 مسافة + 50 للبانر + 22 لرابط الاشتراك
     // البانر أعلى الشاشة تحت الشريط العلوي مباشرة (مع مسافة 8 عن أزرار الشريط لتفادي النقر بالخطأ)
     const bannerTop = () => { const b = document.getElementById('top-bar'); const h = b ? b.getBoundingClientRect().bottom : 0; return Math.round((h > 40 ? h : 60) + 8); };
@@ -131,17 +130,31 @@
         return null;
     }
 
+    async function getProgress() {
+        try {
+            const c = (typeof supabaseClient !== 'undefined') ? supabaseClient : null;
+            if (!c) return null;
+            const { data } = await c.rpc('my_ad_progress');
+            return data || null;
+        } catch (e) { return null; }
+    }
+
+    // ينتظر تسجيل الإعلان في الخادم ثم يعرض التقدّم نحو الكورة التالية
     async function waitForPoints() {
-        const before = Number(window.userState?.points || 0);
+        const b0 = await getProgress();
+        const t0 = b0 ? Number(b0.total) : null;
         for (let i = 0; i < 6; i++) {
             await new Promise(r => setTimeout(r, 2500));
-            const now = await fetchBalance();
-            if (now !== null && now > before) {
-                setStatus(L('تمت إضافة النقاط إلى رصيدك ✅', 'Points added to your balance ✅'));
+            const p = await getProgress();
+            if (p && t0 !== null && Number(p.total) > t0) {
+                await fetchBalance();
+                const prog = Number(p.progress), per = Number(p.per);
+                if (prog === 0) setStatus(L('🎉 ربحت +1 كورة', '🎉 You earned +1 Kora'));
+                else setStatus(L(`تم ✅ التقدّم: ${prog} من ${per} إعلانات للكورة القادمة`, `Done ✅ Progress: ${prog} of ${per} ads for the next Kora`));
                 return true;
             }
         }
-        setStatus(L('إذا لم تصل النقاط خلال دقيقة، افتح الصفحة مرة أخرى.', 'If points do not arrive within a minute, reopen this page.'));
+        setStatus(L('إذا لم يُسجَّل الإعلان خلال دقيقة، افتح الصفحة مرة أخرى.', 'If the ad is not counted within a minute, reopen this page.'));
         return false;
     }
 
@@ -287,48 +300,7 @@
     }
 
     // ---------- 3) ضاعف مكافأتك ----------
-    window.zeloOfferDoubleReward = function (taskId, points) {
-        if (!getAdMob() || !window.userState?.userId) return;
-        if (document.getElementById('zads-double-modal')) return;
-
-        const overlay = document.createElement('div');
-        overlay.id = 'zads-double-modal';
-        overlay.dir = isAr() ? 'rtl' : 'ltr';
-        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:3500;padding:20px;';
-        overlay.innerHTML = `
-            <div style="background:#121215;border:1px solid rgba(252,176,69,.35);border-radius:18px;padding:24px 20px;max-width:320px;width:100%;text-align:center;color:#f8fafc;">
-                <div style="font-size:2.6rem;margin-bottom:8px;">⚡</div>
-                <h3 style="margin:0 0 8px;font-size:1.15rem;font-weight:900;">${L('ضاعف مكافأتك!', 'Double your reward!')}</h3>
-                <p style="color:#94a3b8;margin:0 0 18px;line-height:1.7;font-size:.9rem;">
-                    ${L(`شاهد إعلانًا قصيرًا واحصل على +${points} ZELO إضافية.`, `Watch a short ad and get +${points} extra ZELO.`)}
-                </p>
-                <button id="zads-double-yes" class="btn-action" style="margin-top:0;">${L('📺 ضاعف الآن', '📺 Double now')}</button>
-                <button id="zads-double-no" style="margin-top:12px;background:transparent;color:#888899;font-weight:700;font-size:.9rem;padding:8px;">${L('لا، شكرًا', 'No thanks')}</button>
-            </div>`;
-        document.body.appendChild(overlay);
-
-        const close = () => overlay.remove();
-        overlay.querySelector('#zads-double-no').onclick = close;
-        overlay.querySelector('#zads-double-yes').onclick = async () => {
-            if (busy) return;
-            busy = true;
-            close();
-            try {
-                const rewarded = await showRewardAd('double:' + taskId);
-                if (rewarded) {
-                    toast(L('جارٍ التحقق من المضاعفة...', 'Verifying bonus...'));
-                    if (await waitForPoints()) toast(L('تمت مضاعفة المكافأة 🎉', 'Reward doubled 🎉'));
-                } else {
-                    toast(L('لم تكتمل المشاهدة، لا توجد مضاعفة.', 'Ad not completed, no bonus.'));
-                }
-            } catch (e) {
-                console.error('[ZELO] خطأ في إعلان المضاعفة:', e);
-                toast(L('تعذّر عرض الإعلان الآن.', 'Could not show the ad.'));
-            } finally {
-                busy = false;
-            }
-        };
-    };
+    window.zeloOfferDoubleReward = function () { /* أُلغيت: لا مهام ولا مضاعفة */ };
 
     // ---------- صفحة "اربح نقاط" ----------
     function renderAdsPage(container) {
