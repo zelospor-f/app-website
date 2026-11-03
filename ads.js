@@ -148,6 +148,7 @@
             const p = await getProgress();
             if (p && t0 !== null && Number(p.total) > t0) {
                 await fetchBalance();
+                renderProgress(p);
                 const prog = Number(p.progress), per = Number(p.per);
                 if (prog === 0) setStatus(L('🎉 ربحت +1 كورة', '🎉 You earned +1 Kora'));
                 else setStatus(L(`تم ✅ التقدّم: ${prog} من ${per} إعلانات للكورة القادمة`, `Done ✅ Progress: ${prog} of ${per} ads for the next Kora`));
@@ -156,6 +157,19 @@
         }
         setStatus(L('إذا لم يُسجَّل الإعلان خلال دقيقة، افتح الصفحة مرة أخرى.', 'If the ad is not counted within a minute, reopen this page.'));
         return false;
+    }
+
+    // عدّاد التقدّم: 5 نقاط نحو الكورة التالية + إجمالي الإعلانات
+    async function renderProgress(p) {
+        const box = document.getElementById('zads-prog');
+        if (!box) return;
+        p = p || await getProgress();
+        if (!p) { box.innerHTML = ''; return; }
+        const per = Number(p.per) || 5, prog = Number(p.progress) || 0, total = Number(p.total) || 0;
+        let dots = '';
+        for (let i = 0; i < per; i++) dots += `<span style="display:inline-block;width:16px;height:16px;border-radius:50%;margin:0 4px;background:${i < prog ? '#fcb045' : 'rgba(255,255,255,.15)'};"></span>`;
+        box.innerHTML = `<div>${dots}</div>
+            <div style="margin-top:8px;font-size:.85rem;color:#94a3b8;">${L(`${prog} من ${per} للكورة القادمة · شاهدت ${total} إعلانًا`, `${prog} of ${per} to next Kora · ${total} ads watched`)}</div>`;
     }
 
     // ---------- عرض إعلان المكافأة ----------
@@ -302,7 +316,7 @@
     // ---------- 3) ضاعف مكافأتك ----------
     window.zeloOfferDoubleReward = function () { /* أُلغيت: لا مهام ولا مضاعفة */ };
 
-    // ---------- صفحة "اربح نقاط" ----------
+    // ---------- صفحة "اربح كورة" ----------
     function renderAdsPage(container) {
         const el = container || document.getElementById('main-content');
         if (!el) return;
@@ -310,7 +324,7 @@
         el.innerHTML = `
             <div dir="${isAr() ? 'rtl' : 'ltr'}" style="padding:24px 18px; color:#f8fafc; text-align:center;">
                 <div style="text-align:start; margin:-8px 0 8px;">${typeof window.zeloBackBtn === 'function' ? window.zeloBackBtn("showPage('home')", isAr()) : '<button onclick="showPage(\'home\')" style="background:transparent;color:#f8fafc;border:1px solid rgba(255,255,255,.2);border-radius:12px;width:40px;height:40px;font-size:20px">' + (isAr() ? '›' : '‹') + '</button>'}</div>
-                <div style="font-size:3rem; margin-bottom:10px;">🎁</div>
+                <img src="zelo-coin.png" alt="" style="width:84px;height:84px;object-fit:contain;margin-bottom:10px;" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://raw.githubusercontent.com/zelospor-f/zelo-/main/zelo-coin.png';}else{this.style.display='none';}">
                 <h2 style="font-size:1.4rem; font-weight:900; margin:0 0 8px;">
                     ${L('اربح كورة مجانية', 'Earn free Kora')}
                 </h2>
@@ -318,6 +332,7 @@
                     ${L('شاهد إعلانًا قصيرًا واحصل على كورة.',
                         'Watch a short ad and get Kora.')}
                 </p>
+                <div id="zads-prog" style="margin:0 0 18px;"></div>
                 <button id="zads-watch-btn" class="btn-action" style="min-width:220px;">
                     ${L('📺 شاهد الإعلان', '📺 Watch ad')}
                 </button>
@@ -329,6 +344,7 @@
 
         // تهيئة مسبقة عند فتح الصفحة
         initAdMob();
+        renderProgress();
     }
 
     // ---------- 4) الإعلان البيني (يظهر عند التنقل بين الصفحات) ----------
