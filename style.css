@@ -155,3 +155,9 @@ html[dir="ltr"] ul,html[dir="ltr"] ol{padding-right:0;padding-left:22px}
 html[dir="ltr"] .notice{border-right:0;border-left:4px solid var(--accent-gold)}
 html[dir="rtl"] ol{padding-right:22px}
 footer a{display:inline-block;margin:2px 6px}
+
+/* زر التحميل */
+.dl-box{text-align:center}
+.dl{display:inline-block;padding:14px 30px;border-radius:16px;background:linear-gradient(135deg,var(--accent-gold),#fde9a8);color:var(--bg-dark);font-weight:900;font-size:1.05rem;text-decoration:none;box-shadow:0 0 22px rgba(245,195,90,.3)}
+.dl:hover{filter:brightness(1.08)}
+.dl-box p{margin:10px 0 0}
