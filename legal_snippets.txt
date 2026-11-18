@@ -1,0 +1,11 @@
+=== الشروط والأحكام (أضف فقرة) ===
+برنامج المبدعين: المشاركة في برنامج المبدعين اختيارية وتخضع لسياسة البرنامج المنشورة في صفحته، وقد تتغير شروطه أو يُوقف في أي وقت. المكافآت غير مضمونة، ويحق لنا استبعاد أي نشاط مشبوه وإلغاء المكافآت المرتبطة به. لا يُدفع للمشاهدين أي مقابل على المشاهدة.
+
+=== سياسة الخصوصية (أضف فقرة) ===
+عنوان محفظة السحب: عند إضافتك عنوان محفظة للسحب نحتفظ به لتحويل مستحقاتك فقط، ولا نشاركه مع أي جهة إلا بالقدر اللازم لتنفيذ التحويل. وتُحسب نقاط برنامج المبدعين من تفاعلات التطبيق العامة (مشاهدات، متابعات، إعادة نشر، إعجابات).
+
+=== Terms (add paragraph) ===
+Creator Program: Participation is optional and subject to the program policy published on its page. Requirements may change or the program may be suspended at any time. Rewards are not guaranteed, and we may exclude suspicious activity and cancel related rewards. Viewers are not paid for watching.
+
+=== Privacy Policy (add paragraph) ===
+Withdrawal wallet address: When you add a withdrawal wallet address, we keep it only to send your payouts and share it only as needed to execute the transfer. Creator Program points are calculated from public in-app interactions (views, follows, reposts, likes).
