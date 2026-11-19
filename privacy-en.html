@@ -45,6 +45,7 @@
 <li><strong>AI assistant:</strong> the text you send to the AI match assistant is sent to an external AI service provider to generate a reply.</li>
 <li><strong>Purchase data:</strong> purchases and subscriptions are made through Google Play. We do not see or store your card details. We receive proof of the transaction from Google (purchase token, product, and status) to verify it and activate what you bought.</li>
 <li><strong>Withdrawal data:</strong> when you request a withdrawal of your Kora balance we collect your receiving wallet address (USDT on BNB Smart Chain), the amount, and the request status. We may ask for additional verification data to prevent fraud.</li>
+<li><strong>Approximate country:</strong> we infer your country (a two-letter code only, such as TR) from your connection address (IP) when you open the app. We keep only the code, not your IP address, city or precise location. We do not ask for location permission.</li>
 <li><strong>Device and usage data:</strong> advertising ID and general technical information collected through the advertising services listed below.</li>
 </ul>
 
@@ -59,12 +60,15 @@
 <li>Verifying purchases and activating subscriptions and paid items.</li>
 <li>Processing and verifying withdrawal requests.</li>
 <li>Preventing fraud and abuse and enforcing our terms.</li>
+<li>General statistics and compliance with local laws (using the approximate country).</li>
 <li>Showing ads and answering support requests.</li>
 </ul>
 
 <h3>4. Third parties that process data</h3>
 <ul>
-<li><strong>Supabase:</strong> database hosting, authentication, and file storage.</li>
+<li><strong>Supabase:</strong> database hosting, authentication, and storage of voice messages.</li>
+<li><strong>Cloudflare:</strong> storage and delivery of the photos and videos you upload (Cloudflare R2).</li>
+<li><strong>IP-to-country lookup service:</strong> receives your connection address momentarily only to determine the country; we do not keep it.</li>
 <li><strong>Google:</strong> sign-in with Google when you choose it, Google Play Billing for payments, Google Play Install Referrer to read invite codes, and Firebase Cloud Messaging to deliver notifications.</li>
 <li><strong>Google AdMob:</strong> shows ads in the app and may use the advertising ID and device data. You can manage ad personalization in your device settings.</li>
 <li><strong>AI service provider:</strong> processes the text of your questions to the match assistant only.</li>
